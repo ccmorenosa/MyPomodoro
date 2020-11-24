@@ -131,7 +131,7 @@ ipcRenderer.on("START", (event, value) => {
       var secuenceColour = auxColour;
       var secuenceTitle = auxTitle;
 
-      for (var i = 0; i < configObj.pomodoros; i++) {
+      for (var i = 0; i < configObj.pomodoros - 1; i++) {
         secuence = secuence.concat(aux);
         secuenceColour = secuenceColour.concat(auxColour);
         secuenceTitle = secuenceTitle.concat(auxTitle);
@@ -142,18 +142,20 @@ ipcRenderer.on("START", (event, value) => {
       secuenceTitle.pop(secuenceTitle.length - 1);
 
       secuence = secuence.concat(configObj.lBreak);
-      secuenceColour = secuenceColour.concat(["#55dd55", "#99ee99"]);
+      secuenceColour = secuenceColour.concat([["#55dd55", "#99ee99"]]);
       secuenceTitle = secuenceTitle.concat("Long Break");
 
       aux = secuence;
       auxColour = secuenceColour;
       auxTitle = secuenceTitle;
 
-      for (var i = 0; i < configObj.pomodoros; i++) {
+      for (var i = 0; i < configObj.pomodoros - 1; i++) {
         secuence = secuence.concat(aux);
         secuenceColour = secuenceColour.concat(auxColour);
         secuenceTitle = secuenceTitle.concat(auxTitle);
       }
+
+      console.log(secuenceColour);
 
       var round = 0;
 
