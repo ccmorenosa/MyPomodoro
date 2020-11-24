@@ -19,9 +19,14 @@
 const {ipcRenderer} = require("electron");
 const fs = require("fs-extra");
 
-
 // The timer division.
 var timerDiv = document.getElementById("Timer");
+var timer;
+
+// The buttons.
+var startButton = document.getElementById("Start");
+var resetButton = document.getElementById("Reset");
+var configButton = document.getElementById("Config");
 
 /**
 * This function update the timer.
@@ -35,6 +40,10 @@ function updatePomodoroTimer(time) {
     minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
   } else {
     minutes = 60;
+  }
+
+  if (minutes < 10) {
+    minutes = "0" + minutes;
   }
 
   var seconds = Math.floor((time % (1000 * 60)) / 1000);
@@ -63,9 +72,22 @@ function resetPomodoroTimer(file) {
   });
 }
 
+// Add events for the buttons
+// Get all delete buttons of the table.
+var buttons = document.getElementsByClassName("button");
+
+// Add an event to the delete buttons.
+for (var button of buttons) {
+  button.addEventListener("click", (event) => {
+    var parNode = event.target.id;
+    console.log(parNode);
+    ipcRenderer.send(parNode);
+  });
+}
+
 // This event reset the timer.
 ipcRenderer.on("RESET", (event, value) => {
-  console.log(value);
+  clearInterval(timer);
   resetPomodoroTimer(value);
 });
 
