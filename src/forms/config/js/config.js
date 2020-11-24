@@ -39,3 +39,13 @@ function configPomodoro() {
 
   ipcRenderer.send("CONFIG-DONE", data);
 }
+
+ipcRenderer.on("DEFAULT", (event, value) => {
+  form.children["Pomodoro"].value = value[0];
+  form.children["sBreak"].value = value[1];
+  form.children["lBreak"].value = value[2];
+  form.children["nPomodoros"].value = value[3];
+  form.children["Rounds"].value = value[4];
+});
+
+ipcRenderer.send("DEFAULT");

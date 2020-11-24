@@ -178,6 +178,23 @@ ipcMain.on("CONFIG", (event, value) => {
   });
 });
 
+ipcMain.on("DEFAULT", (event, value) => {
+  // Read the configuration file.
+  fs.readJson(configFile, (err, configObj) => {
+    if (err) {
+      throw err;
+    }
+
+    formWindow.send("DEFAULT", [
+      configObj.work,
+      configObj.sBreak,
+      configObj.lBreak,
+      configObj.pomodoros,
+      configObj.repetitions
+    ]);
+  });
+});
+
 ipcMain.on("CONFIG-DONE", (event, value) => {
   formWindow.close();
 
