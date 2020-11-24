@@ -1,0 +1,64 @@
+/*
+** MyPomodoro.  A simply pomodoro countdown timer.
+** Copyright (C) 2020  Andŕes Felipe Moreno Sarria
+**
+** This program is free software: you can redistribute it and/or modify
+** it under the terms of the GNU General Public License as published by
+** the Free Software Foundation, either version 3 of the License, or
+** (at your option) any later version.
+**
+** This program is distributed in the hope that it will be useful,
+** but WITHOUT ANY WARRANTY; without even the implied warranty of
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+** GNU General Public License for more details.
+**
+** You should have received a copy of the GNU General Public License
+** along with this program.  If not, see <https://www.gnu.org/licenses/>.
+**/
+
+.config-form {
+  background: #dd5555;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.form-label {
+  box-sizing: border-box;
+  font-size: x-large;
+  height: 7%;
+  margin-bottom: 2%;
+  text-align: center;
+  width: 100%;
+}
+
+.form-input {
+  box-sizing: border-box;
+  height: 8%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  width: 100%;
+}
+
+.form-input input {
+  background: #dd9999;
+  border: 2px solid #555;
+  box-sizing: border-box;
+  font-size: large;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.submit-button {
+  background: #ee8888;
+  border: 2px solid #555;
+  height: 10%;
+  margin-top: 2%;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background: #ee6666;
+  border: 2px solid #333;
+}

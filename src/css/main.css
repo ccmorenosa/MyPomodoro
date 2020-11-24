@@ -20,6 +20,7 @@
 /* General aparience configuration */
 html, body {
  background: #eee;
+ box-sizing: border-box;
  font-family: serif;
  height: 100%;
  margin: 0;

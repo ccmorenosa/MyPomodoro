@@ -26,11 +26,11 @@ var form = document.getElementById("config-form");
 function configPomodoro() {
   console.log("a");
   var data = [
-    form.children["Pomodoro"].value,
-    form.children["sBreak"].value,
-    form.children["lBreak"].value,
-    form.children["nPomodoros"].value,
-    form.children["Rounds"].value
+    form.children["Pomodoro"].children[0].value,
+    form.children["sBreak"].children[0].value,
+    form.children["lBreak"].children[0].value,
+    form.children["nPomodoros"].children[0].value,
+    form.children["Rounds"].children[0].value
   ];
 
   data = data.map((value) => {
@@ -41,11 +41,11 @@ function configPomodoro() {
 }
 
 ipcRenderer.on("DEFAULT", (event, value) => {
-  form.children["Pomodoro"].value = value[0];
-  form.children["sBreak"].value = value[1];
-  form.children["lBreak"].value = value[2];
-  form.children["nPomodoros"].value = value[3];
-  form.children["Rounds"].value = value[4];
+  form.children["Pomodoro"].children[0].value = value[0];
+  form.children["sBreak"].children[0].value = value[1];
+  form.children["lBreak"].children[0].value = value[2];
+  form.children["nPomodoros"].children[0].value = value[3];
+  form.children["Rounds"].children[0].value = value[4];
 });
 
 ipcRenderer.send("DEFAULT");

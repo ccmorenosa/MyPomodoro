@@ -26,36 +26,61 @@
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="../../css/home.css">
+  <link rel="stylesheet" href="../../css/main.css">
   <link rel="stylesheet" href="css/config.css">
 </head>
 
 <body>
   <!-- Begining of the form -->
-  <form id="config-form" class="" onsubmit="configPomodoro();">
+  <form id="config-form" class="config-form" onsubmit="configPomodoro();">
 
     <!-- Duration of the pomodoros -->
-    <div class="form-label">Pomodoro [min]</div>
-    <input id="Pomodoro" type="number" name="Pomodoro" min="1" max="59" required/>
+    <div class="form-label">
+      Pomodoro [min]
+    </div>
+    <div class="form-input" name="Pomodoro">
+      <input id="Pomodoro" class="" type="number"
+      min="1" max="59" required/>
+    </div>
 
     <!-- Duration of the short breaks -->
-    <div class="form-label">Short Break [min]</div>
-    <input id="sBreak" type="number" name="sBreak" min="1" max="59" required/>
+    <div class="form-label">
+      Short Break [min]
+    </div>
+    <div class="form-input" name="sBreak">
+      <input id="sBreak" class="" type="number" min="1"
+      max="59" required/>
+    </div>
 
     <!-- Duration of the long breaks -->
-    <div class="form-label">Long Break [min]</div>
-    <input id="lBreak" type="number" name="lBreak" min="1" max="59" required/>
+    <div class="form-label">
+      Long Break [min]
+    </div>
+    <div class="form-input" name="lBreak">
+      <input id="lBreak" class="" type="number" min="1"
+      max="59" required/>
+    </div>
 
     <!-- Number of pomodoros -->
-    <div class="form-label">Pomodoros</div>
-    <input id="nPomodoros" type="number" name="nPomodoros" min="1" max="10" required/>
+    <div class="form-label">
+      Pomodoros
+    </div>
+    <div class="form-input" name="nPomodoros">
+      <input id="nPomodoros" class="" type="number"
+      min="1" max="10" required/>
+    </div>
 
     <!-- Rounds -->
-    <div class="form-label">Total Rounds</div>
-    <input id="Rounds" type="number" name="Rounds" min="1" max="10" required/>
+    <div class="form-label">
+      Total Rounds
+    </div>
+    <div class="form-input" name="Rounds">
+      <input id="Rounds" class="" type="number" min="1"
+      max="10" required/>
+    </div>
 
     <!-- Submit button -->
-    <input type="submit" name="OK" value="OK">
+    <input class="submit-button" type="submit" name="OK" value="OK">
   </form>
 
   <!-- Submit function -->
