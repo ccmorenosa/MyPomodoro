@@ -2,27 +2,81 @@
   "name": "mypomodoro",
   "version": "1.0.0",
   "description": "A simply pomodoro countdown timer",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "electron src/index.js"
+    "postinstall": "install-app-deps",
+    "test": "electron src/index.js",
+    "pack": "electron-builder --dir",
+    "distw": "electron-builder --win",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "mypomodoro",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "pacman"
+      ],
+      "category": "Productivity",
+      "icon": "src/assets/icon.png",
+      "maintainer": "afmorenosa"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "msi"
+      ],
+      "icon": "src/assets/icon.png",
+      "publish": ["github"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "license": "LICENSE",
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "src/assets/iconInstall.ico",
+      "uninstallerIcon": "src/assets/iconUninstall.ico"
+    }
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/afmorenosa/MyPomodoro.git"
   },
   "keywords": [
-    "pomodoro",
-    "timer",
-    "countdown"
+    "Pomodoro",
+    "Timer",
+    "Countdown"
   ],
-  "author": "Andŕes Felipe Moreno Sarria",
+  "author": "Andŕes Felipe Moreno Sarria <afmorenosa@unal.edu.co>",
+  "email": "afmorenosa@unal.edu.co",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/afmorenosa/MyPomodoro/issues"
   },
   "homepage": "https://github.com/afmorenosa/MyPomodoro#readme",
   "devDependencies": {
-    "electron": "^11.0.2",
+    "electron": "^11.0.3",
+    "electron-builder": "^22.9.1",
+    "fs": "0.0.1-security",
+    "fs-extra": "^9.0.1"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
     "fs-extra": "^9.0.1"
   }
 }
