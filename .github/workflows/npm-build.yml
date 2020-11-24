@@ -40,8 +40,8 @@ jobs:
           name: File output
           path: dist/mypomodoro-1.0.0.x86_64.rpm
 
-      - name: Save pacman file
-        uses: actions/upload-artifact@v2
-        with:
-          name: File output
-          path: dist/mypomodoro-1.0.0.pacman
+      # - name: Save pacman file
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: File output
+      #     path: dist/mypomodoro-1.0.0.pacman

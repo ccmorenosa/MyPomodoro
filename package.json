@@ -1,7 +1,7 @@
 {
   "name": "mypomodoro",
   "version": "1.0.0",
-  "description": "A simply pomodoro countdown timer",
+  "description": "A simple pomodoro countdown timer",
   "main": "src/index.js",
   "scripts": {
     "postinstall": "install-app-deps",
@@ -30,8 +30,7 @@
       "target": [
         "AppImage",
         "deb",
-        "rpm",
-        "pacman"
+        "rpm"
       ],
       "category": "Productivity",
       "icon": "src/assets/icon.png",

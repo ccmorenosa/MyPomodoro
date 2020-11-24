@@ -1,0 +1,30 @@
+image:https://github.com/afmorenosa/MyPomodoro/workflows/MyPomodoro/badge.svg[]
+
+MyPomodoro
+==========
+
+A simple application for managing time in tasks.
+
+== Installation
+
+For instillation you can download the installer for you respective operative
+system.
+
+=== Windows
+
+https://github.com/afmorenosa/MyPomodoro/releases/download/1.0.0/mypomodoro.Setup.1.0.0.exe
+
+
+=== Linux
+
+==== Debian
+
+https://github.com/afmorenosa/MyPomodoro/releases/download/1.0.0/mypomodoro_1.0.0_amd64.deb
+
+==== RedHat
+
+https://github.com/afmorenosa/MyPomodoro/releases/download/1.0.0/mypomodoro-1.0.0.x86_64.rpm
+
+==== Arch
+
+https://github.com/afmorenosa/MyPomodoro/releases/download/1.0.0/mypomodoro-1.0.0.pacman

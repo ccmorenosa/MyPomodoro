@@ -1,5 +1,5 @@
 /*
-** MyPomodoro.  A simply pomodoro countdown timer.
+** MyPomodoro.  A simple pomodoro countdown timer.
 ** Copyright (C) 2020  Andŕes Felipe Moreno Sarria
 **
 ** This program is free software: you can redistribute it and/or modify
