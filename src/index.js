@@ -82,14 +82,14 @@ function createWindow () {
 
     if (!exists) {
       fs.mkdirSync(dataDir, (dErr) => {
-          if (dErr) {
-            throw dErr;
-          }
+        if (dErr) {
+          throw dErr;
+        }
       });
     }
   });
 
-  fs.pathExistsSync(configFile, (err, exists) => {
+  fs.pathExists(configFile, (err, exists) => {
     if (err) {
       throw err;
     }
@@ -97,18 +97,22 @@ function createWindow () {
     if (!exists) {
       var config = {
         "work": 25,
-        "s-break": 5,
-        "l-break": 25,
-        "pomodoros": 4,
+        "sBreak": 5,
+        "lBreak": 25,
+        "pomodoros": 3,
         "repetitions": 3
       };
 
+      console.log(configFile);
+
       fs.writeJsonSync(configFile, config, (wErr) => {
-          if (wErr) {
-            throw wErr;
-          }
+        if (wErr) {
+          throw wErr;
+        }
       });
     }
+
+    mainWin.send("RESET", configFile);
 
   });
 
@@ -144,6 +148,40 @@ if (!gotTheLock) {
   app.whenReady().then(createWindow);
 }
 
+// This event start the timer.
+ipcMain.on("START", (err, value) => {
+  mainWin.send("START", configFile);
+});
+
+// This event reset the timer.
 ipcMain.on("RESET", (err, value) => {
   mainWin.send("RESET", configFile);
+});
+
+// This event open the configuration form.
+ipcMain.on("CONFIG", (err, value) => {
+  formWindow = new BrowserWindow({
+    width: 300,
+    height: 400,
+    resizable: false,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  });
+
+  formWindow.loadURL(url.format({
+    pathname: path.join(__dirname,"forms/config/index.html"),
+    protocol: "file:",
+    slashes: true
+  }));
+
+  formWindow.on("close",  () => {
+    formWindow=null;
+  });
+});
+
+ipcMain.on("CONFIG-DONE", (err, value) => {
+  console.log("Llegó");
+  formWindow.close();
+  console.log(value);
 });

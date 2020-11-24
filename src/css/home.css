@@ -17,9 +17,14 @@
 **/
 
 /* Main divisions */
+.title {
+  background: #dd5555;
+  height: 10%;
+}
+
 .timer {
   background: #dd5555;
-  height: 75%;
+  height: 65%;
 }
 
 .buttons {
