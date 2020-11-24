@@ -82,6 +82,18 @@ a {
   text-align: left;
 }
 
+.t-top {
+  vertical-align: top;
+}
+
+.t-middle {
+  vertical-align: middle;
+}
+
+.t-bottom {
+  vertical-align: bottom;
+}
+
 
 /* Font Sizes */
 .tiny {
@@ -114,6 +126,10 @@ a {
 
 .jumbo {
   font-size: 64px !important;
+}
+
+.extra-jumbo {
+  font-size: 250px !important;
 }
 
 

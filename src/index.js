@@ -54,7 +54,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWin.loadURL(url.format({
-    pathname: path.join(__dirname,"index.html"),
+    pathname: path.join(__dirname, "index.html"),
     protocol: "file:",
     slashes: true
   }));
@@ -67,22 +67,21 @@ function createWindow () {
   });
 
   processor.loadURL(url.format({
-    pathname: path.join(__dirname,"processor/processor.html"),
+    pathname: path.join(__dirname, "processor/processor.html"),
     protocol: "file:",
     slashes: true
   }));
 
-  var appDir = app.getPath("appData");
-  dataDir = path.join(appDir, "MyPomodoro");
-  configFile = path.join(dataDir, "/config.json");
+  dataDir = app.getPath("userData");
+  configFile = path.join(dataDir, "config.json");
 
-  fs.pathExists(dataDir, (err, exists) => {
+  fs.pathExistsSync(dataDir, (err, exists) => {
     if (err) {
       throw err;
     }
 
     if (!exists) {
-      fs.mkdir(dataDir, (dErr) => {
+      fs.mkdirSync(dataDir, (dErr) => {
           if (dErr) {
             throw dErr;
           }
@@ -90,7 +89,7 @@ function createWindow () {
     }
   });
 
-  fs.pathExists(configFile, (err, exists) => {
+  fs.pathExistsSync(configFile, (err, exists) => {
     if (err) {
       throw err;
     }
@@ -104,12 +103,13 @@ function createWindow () {
         "repetitions": 3
       };
 
-      fs.writeJson(configFile, config, (wErr) => {
+      fs.writeJsonSync(configFile, config, (wErr) => {
           if (wErr) {
             throw wErr;
           }
       });
     }
+
   });
 
   // Open the DevTools.
@@ -132,14 +132,18 @@ if (!gotTheLock) {
 } else {
   app.on('second-instance', (event, commandLine, workingDirectory) => {
     // Someone tried to run a second instance, we should focus our window.
-    if (welcomeWin) {
-      if (welcomeWin.isMinimized()) {
-        welcomeWin.restore();
+    if (mainWin) {
+      if (mainWin.isMinimized()) {
+        mainWin.restore();
       }
-      welcomeWin.focus();
+      mainWin.focus();
     }
   });
 
   // Create myWindow, load the rest of the app, etc...
   app.whenReady().then(createWindow);
 }
+
+ipcMain.on("RESET", (err, value) => {
+  mainWin.send("RESET", configFile);
+});

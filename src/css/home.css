@@ -15,3 +15,27 @@
 ** You should have received a copy of the GNU General Public License
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
+
+/* Main divisions */
+.timer {
+  background: #dd5555;
+  height: 75%;
+}
+
+.buttons {
+  background: #ee9999;
+  height: 25%;
+}
+
+
+/* Buttons appearance */
+.button {
+  border: 1px solid #555;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.button:hover {
+  background: #ee6666;
+  border: 1px solid #333;
+}
