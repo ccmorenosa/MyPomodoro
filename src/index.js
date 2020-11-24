@@ -103,8 +103,6 @@ function createWindow () {
         "repetitions": 3
       };
 
-      console.log(configFile);
-
       fs.writeJsonSync(configFile, config, (wErr) => {
         if (wErr) {
           throw wErr;
@@ -149,17 +147,17 @@ if (!gotTheLock) {
 }
 
 // This event start the timer.
-ipcMain.on("START", (err, value) => {
+ipcMain.on("START", (event, value) => {
   mainWin.send("START", configFile);
 });
 
 // This event reset the timer.
-ipcMain.on("RESET", (err, value) => {
+ipcMain.on("RESET", (event, value) => {
   mainWin.send("RESET", configFile);
 });
 
 // This event open the configuration form.
-ipcMain.on("CONFIG", (err, value) => {
+ipcMain.on("CONFIG", (event, value) => {
   formWindow = new BrowserWindow({
     width: 300,
     height: 400,
@@ -180,8 +178,22 @@ ipcMain.on("CONFIG", (err, value) => {
   });
 });
 
-ipcMain.on("CONFIG-DONE", (err, value) => {
-  console.log("Llegó");
+ipcMain.on("CONFIG-DONE", (event, value) => {
   formWindow.close();
-  console.log(value);
+
+  var config = {
+    "work": value[0],
+    "sBreak": value[1],
+    "lBreak": value[2],
+    "pomodoros": value[3],
+    "repetitions": value[4]
+  };
+
+  fs.writeJsonSync(configFile, config, (wErr) => {
+    if (wErr) {
+      throw wErr;
+    }
+  });
+
+  mainWin.send("RESET", configFile);
 });
