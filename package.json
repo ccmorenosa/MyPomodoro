@@ -4,7 +4,7 @@
   "description": "A simply pomodoro countdown timer",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "electron src/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/afmorenosa/MyPomodoro/issues"
   },
-  "homepage": "https://github.com/afmorenosa/MyPomodoro#readme"
+  "homepage": "https://github.com/afmorenosa/MyPomodoro#readme",
+  "devDependencies": {
+    "electron": "^11.0.2",
+    "fs-extra": "^9.0.1"
+  }
 }
