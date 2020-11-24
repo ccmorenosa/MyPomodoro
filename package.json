@@ -1,0 +1,24 @@
+{
+  "name": "mypomodoro",
+  "version": "1.0.0",
+  "description": "A simply pomodoro countdown timer",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afmorenosa/MyPomodoro.git"
+  },
+  "keywords": [
+    "pomodoro",
+    "timer",
+    "countdown"
+  ],
+  "author": "Andŕes Felipe Moreno Sarria",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/afmorenosa/MyPomodoro/issues"
+  },
+  "homepage": "https://github.com/afmorenosa/MyPomodoro#readme"
+}
