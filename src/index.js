@@ -115,8 +115,8 @@ function createWindow () {
   });
 
   // Open the DevTools.
-  mainWin.webContents.openDevTools();
-  processor.webContents.openDevTools();
+  // mainWin.webContents.openDevTools();
+  // processor.webContents.openDevTools();
 
   mainWin.on("close", () => {
     mainWin = null;
