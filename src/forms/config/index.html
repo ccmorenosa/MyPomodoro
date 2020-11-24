@@ -1,0 +1,90 @@
+<!--
+. MyPomodoro.  A simply pomodoro countdown timer.
+. Copyright (C) 2020  Andŕes Felipe Moreno Sarria
+.
+. This program is free software: you can redistribute it and/or modify
+. it under the terms of the GNU General Public License as published by
+. the Free Software Foundation, either version 3 of the License, or
+. (at your option) any later version.
+.
+. This program is distributed in the hope that it will be useful,
+. but WITHOUT ANY WARRANTY; without even the implied warranty of
+. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+. GNU General Public License for more details.
+.
+. You should have received a copy of the GNU General Public License
+. along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Configuration</title>
+  <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="css/config.css">
+</head>
+
+<body>
+  <!-- Begining of the form -->
+  <form id="config-form" class="config-form" onsubmit="configPomodoro();">
+
+    <!-- Duration of the pomodoros -->
+    <div class="form-label">
+      Pomodoro [min]
+    </div>
+    <div class="form-input" name="Pomodoro">
+      <input id="Pomodoro" class="" type="number"
+      min="1" max="59" required/>
+    </div>
+
+    <!-- Duration of the short breaks -->
+    <div class="form-label">
+      Short Break [min]
+    </div>
+    <div class="form-input" name="sBreak">
+      <input id="sBreak" class="" type="number" min="1"
+      max="59" required/>
+    </div>
+
+    <!-- Duration of the long breaks -->
+    <div class="form-label">
+      Long Break [min]
+    </div>
+    <div class="form-input" name="lBreak">
+      <input id="lBreak" class="" type="number" min="1"
+      max="59" required/>
+    </div>
+
+    <!-- Number of pomodoros -->
+    <div class="form-label">
+      Pomodoros
+    </div>
+    <div class="form-input" name="nPomodoros">
+      <input id="nPomodoros" class="" type="number"
+      min="1" max="10" required/>
+    </div>
+
+    <!-- Rounds -->
+    <div class="form-label">
+      Total Rounds
+    </div>
+    <div class="form-input" name="Rounds">
+      <input id="Rounds" class="" type="number" min="1"
+      max="10" required/>
+    </div>
+
+    <!-- Submit button -->
+    <input class="submit-button" type="submit" name="OK" value="OK">
+  </form>
+
+  <!-- Submit function -->
+  <script src="js/config.js"></script>
+</body>
+
+</html>
