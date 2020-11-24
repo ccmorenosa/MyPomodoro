@@ -1,0 +1,47 @@
+name: MyPomodoro
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+
+      - run: npm i electron electron-builder fs fs-extra
+
+      - run: npm run dist
+      - run: npm run distw
+
+      - run: ./dist/linux-unpacked/mypomodoro
+
+      - name: Save exe file
+        uses: actions/upload-artifact@v2
+        with:
+          name: File output
+          path: dist/mypomodoro Setup 1.0.0.exe
+
+      - name: Save deb file
+        uses: actions/upload-artifact@v2
+        with:
+          name: File output
+          path: dist/mypomodoro_1.0.0_amd64.deb
+
+      - name: Save rpm file
+        uses: actions/upload-artifact@v2
+        with:
+          name: File output
+          path: dist/mypomodoro-1.0.0.x86_64.rpm
+
+      - name: Save pacman file
+        uses: actions/upload-artifact@v2
+        with:
+          name: File output
+          path: dist/mypomodoro-1.0.0.pacman
