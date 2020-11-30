@@ -17,7 +17,7 @@
 **/
 
 const electron = require("electron");
-const {app, BrowserWindow, ipcMain} = electron;
+const {app, BrowserWindow, ipcMain, Notification} = electron;
 const path = require("path");
 const url = require("url");
 const fs = require("fs-extra");
@@ -149,6 +149,17 @@ if (!gotTheLock) {
 // This event start the timer.
 ipcMain.on("START", (event, value) => {
   mainWin.send("START", configFile);
+});
+
+// This event send a notification of the cycle completed.
+ipcMain.on("NOTIFICATION", (event, value) => {
+  // Notifications variable
+  var notificationBeep = new Notification({
+    title: value + " completed",
+    silent: false
+  });
+
+  notificationBeep.show();
 });
 
 // This event reset the timer.

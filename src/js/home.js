@@ -16,7 +16,7 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-const {ipcRenderer, shell} = require("electron");
+const {ipcRenderer} = require("electron");
 const fs = require("fs-extra");
 
 // The title division.
@@ -168,6 +168,7 @@ ipcRenderer.on("START", (event, value) => {
         updatePomodoroTimer(time);
 
         if (time <= 0) {
+          ipcRenderer.send("NOTIFICATION", secuenceTitle[round]);
           round += 1;
 
           if (round < secuence.length) {
@@ -179,7 +180,6 @@ ipcRenderer.on("START", (event, value) => {
             updatePomodoroColours(secuenceColour[round]);
             updatePomodoroTimer(time);
 
-            shell.beep();
           } else {
             ipcRenderer.send("RESET");
           }
