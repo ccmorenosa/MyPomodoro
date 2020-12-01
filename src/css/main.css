@@ -29,8 +29,8 @@ html, body {
 }
 
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
 
 
@@ -136,15 +136,15 @@ a {
 
 /* Relative Displays */
 .display-bottomleft {
-  position: absolute;
-  left: 0;
   bottom: 0;
+  left: 0;
+  position: absolute;
 }
 
 .display-bottomright {
+  bottom: 0;
   position: absolute;
   right: 0;
-  bottom: 0;
 }
 
 .display-container {
@@ -152,23 +152,22 @@ a {
 }
 
 .display-left {
+  left: 0;
   position: absolute;
   top: 50%;
-  left: 0%;
   transform: translate(0%,-50%);
-  -ms-transform: translate(-0%,-50%);
 }
 
 .display-middle {
+  left: 50%;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%,-50%);
 }
 
 .display-topleft {
-  position: absolute;
   left: 0;
+  position: absolute;
   top: 0;
 }
 
@@ -180,40 +179,37 @@ a {
 
 .display-right {
   position: absolute;
+  right: 0;
   top: 50%;
-  right: 0%;
   transform: translate(0%,-50%);
-  -ms-transform: translate(0%,-50%);
 }
 
 .display-topmiddle {
-  position: absolute;
   left: 50%;
+  position: absolute;
   top: 0;
   transform: translate(-50%,0%);
-  -ms-transform: translate(-50%,0%);
 }
 
 .display-bottommiddle {
-  position: absolute;
   left: 50%;
+  position: absolute;
   bottom: 0;
   transform: translate(-50%,0%);
-  -ms-transform: translate(-50%,0%);
 }
 
 
 /* Font Settings */
 p {
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 
 /* Scroll Bars Settings */
 ::-webkit-scrollbar {
-  width: 5px;
   height: 5px;
+  width: 5px;
 }
 
 
@@ -239,6 +235,7 @@ p {
 .pointer:hover {
   cursor: pointer;
 }
+
 
 /* Borders */
 .right-border{

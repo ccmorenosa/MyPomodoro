@@ -16,6 +16,7 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+// Needed packages
 const electron = require("electron");
 const {app, BrowserWindow, ipcMain, Notification} = electron;
 const path = require("path");
@@ -34,9 +35,9 @@ var configFile;
 
 /**
 * This function creates the main window.
-*
-* It also will create the processor that will most of the process of the
-* application and the database.
+
+* It also will create the processor that will do most of the process of the
+* application.
 */
 function createWindow () {
   // Create the browser mainWindow.
@@ -72,9 +73,11 @@ function createWindow () {
     slashes: true
   }));
 
+  // Get the data directory to save the configuration.
   dataDir = app.getPath("userData");
   configFile = path.join(dataDir, "config.json");
 
+  // Create the directory if it does not exists.
   fs.pathExistsSync(dataDir, (err, exists) => {
     if (err) {
       throw err;
@@ -89,6 +92,7 @@ function createWindow () {
     }
   });
 
+  // Crete the configuration file if it does not exists.
   fs.pathExists(configFile, (err, exists) => {
     if (err) {
       throw err;
@@ -189,6 +193,7 @@ ipcMain.on("CONFIG", (event, value) => {
   });
 });
 
+// Send the actual contents of the configuration file.
 ipcMain.on("DEFAULT", (event, value) => {
   // Read the configuration file.
   fs.readJson(configFile, (err, configObj) => {
@@ -206,6 +211,7 @@ ipcMain.on("DEFAULT", (event, value) => {
   });
 });
 
+// This event save the configuration file with the new configuration.
 ipcMain.on("CONFIG-DONE", (event, value) => {
   formWindow.close();
 

@@ -40,6 +40,7 @@ function configPomodoro() {
   ipcRenderer.send("CONFIG-DONE", data);
 }
 
+// This event fill the form with the actual configuration fo the program.
 ipcRenderer.on("DEFAULT", (event, value) => {
   form.children["Pomodoro"].children[0].value = value[0];
   form.children["sBreak"].children[0].value = value[1];
