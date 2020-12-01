@@ -25,12 +25,12 @@
 
 .timer {
   background: #dd5555;
-  height: 65%;
+  height: 40%;
 }
 
 .buttons {
   background: #ee9999;
-  height: 25%;
+  height: 50%;
 }
 
 
@@ -38,7 +38,7 @@
 .button {
   border: 1px solid #555;
   box-sizing: border-box;
-  height: 100%;
+  height: 50%;
 }
 
 .button:hover {

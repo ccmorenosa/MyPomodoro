@@ -32,8 +32,9 @@ var startButton = document.getElementById("Start");
 var resetButton = document.getElementById("Reset");
 var configButton = document.getElementById("Config");
 
-// Is running flag.
+// Is running flags.
 var isRunning = false;
+var isPaused = false;
 
 // Rounds or cycle
 var round;
@@ -199,9 +200,20 @@ ipcRenderer.on("START", (event, value) => {
 
       updatePomodoroTimer(time);
 
+      // Start the timer.
       startTimer();
     });
+  } else if (isPaused) {
+    // Start the timer.
+    isPaused = false;
+    startTimer();
   }
+});
+
+// This event pause the timer.
+ipcRenderer.on("PAUSE", (event, value) => {
+  clearInterval(timer);
+  isPaused = true;
 });
 
 // This event reset the timer.

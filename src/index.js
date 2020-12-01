@@ -166,6 +166,11 @@ ipcMain.on("NOTIFICATION", (event, value) => {
   notificationBeep.show();
 });
 
+// This event start the timer.
+ipcMain.on("PAUSE", (event, value) => {
+  mainWin.send("PAUSE", configFile);
+});
+
 // This event reset the timer.
 ipcMain.on("RESET", (event, value) => {
   mainWin.send("RESET", configFile);
