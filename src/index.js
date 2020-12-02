@@ -168,7 +168,7 @@ ipcMain.on("NOTIFICATION", (event, value) => {
 
 // This event start the timer.
 ipcMain.on("PAUSE", (event, value) => {
-  mainWin.send("PAUSE", configFile);
+  mainWin.send("PAUSE");
 });
 
 // This event reset the timer.
@@ -235,4 +235,9 @@ ipcMain.on("CONFIG-DONE", (event, value) => {
   });
 
   mainWin.send("RESET", configFile);
+});
+
+// This event add an item to the ToDo list.
+ipcMain.on("ADD-ITEM", (event, value) => {
+  mainWin.send("ADD-ITEM");
 });

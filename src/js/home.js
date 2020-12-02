@@ -32,6 +32,10 @@ var startButton = document.getElementById("Start");
 var resetButton = document.getElementById("Reset");
 var configButton = document.getElementById("Config");
 
+// The ToDo list
+var todoTitle = document.getElementById("TODO-TITLE");
+var todoList = document.getElementById("CHECK-LIST");
+
 // Is running flags.
 var isRunning = false;
 var isPaused = false;
@@ -42,6 +46,11 @@ var round;
 // Time variable
 var time;
 
+// Secuence variables
+var secuence;
+var secuenceColour;
+var secuenceTitle;
+
 /**
 * This function update the colours of the application.
 
@@ -50,7 +59,7 @@ var time;
 function updatePomodoroColours(colours) {
   titleDiv.parentElement.style.background = colours[0];
   timerDiv.parentElement.style.background = colours[0];
-  buttonsDiv.style.background = colours[1];
+  todoTitle.style.background = colours[0];
 }
 
 /**
@@ -147,6 +156,43 @@ for (var button of buttons) {
   });
 }
 
+/**
+* This Funtion add event handlers for all the check items in the application.
+*/
+function updateCheckItems() {
+  // Get all delete buttons of the table.
+  var checks = document.getElementsByClassName("item-check");
+
+  // Add an event to all the buttons.
+  for (var check of checks) {
+    check.addEventListener("click", (event) => {
+      var parNode = event.target;
+
+      if (parNode.classList.contains("todo")) {
+        parNode.classList.remove("todo");
+        parNode.classList.add("doing");
+      } else if (parNode.classList.contains("doing")) {
+        parNode.classList.remove("doing");
+        parNode.classList.add("done");
+      } else {
+        parNode.classList.remove("done");
+        parNode.classList.add("todo");
+      }
+
+    });
+  }
+
+  // Get all delete buttons of the table.
+  var removeButtons = document.getElementsByClassName("remove-item");
+
+  // Add an event to all the buttons.
+  for (var removeButton of removeButtons) {
+    removeButton.addEventListener("click", (event) => {
+      event.target.parentElement.remove();
+    });
+  }
+}
+
 // This event start the timer.
 ipcRenderer.on("START", (event, value) => {
   if (!isRunning) {
@@ -163,9 +209,9 @@ ipcRenderer.on("START", (event, value) => {
       var auxColour = [["#dd5555", "#ee9999"], ["#5555dd", "#9999ee"]];
       var auxTitle = ["Pomodoro", "Short Break"];
 
-      var secuence = aux;
-      var secuenceColour = auxColour;
-      var secuenceTitle = auxTitle;
+      secuence = aux;
+      secuenceColour = auxColour;
+      secuenceTitle = auxTitle;
 
       for (var i = 0; i < configObj.pomodoros - 1; i++) {
         secuence = secuence.concat(aux);
@@ -220,6 +266,20 @@ ipcRenderer.on("PAUSE", (event, value) => {
 ipcRenderer.on("RESET", (event, value) => {
   clearInterval(timer);
   resetPomodoroTimer(value);
+});
+
+// This event add an item to the ToDo list.
+ipcRenderer.on("ADD-ITEM", (event, value) => {
+  item = "<div class=\"full-width\">" +
+  "<div class=\"item-check pointer float-left todo\"></div>\n" +
+  "<input type=\"text\" class=\"item-label float-left\"/>\n" +
+  "<img src=\"assets/removeButton.svg\"" +
+  " class=\"button list-button float-left remove-item\"/>" +
+  "</div>";
+
+  todoList.innerHTML += item;
+
+  updateCheckItems();
 });
 
 // Reset the timer when the window is ready.

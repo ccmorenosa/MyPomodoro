@@ -18,21 +18,78 @@
 
 
 /* Main divisions */
+.half-div {
+  border: 2px solid #333;
+  box-sizing: border-box;
+  height: 100%;
+}
+
 .title {
   background: #dd5555;
   height: 10%;
 }
 
+
+/* Timer divisions */
 .timer {
   background: #dd5555;
   height: 40%;
 }
 
 .buttons {
-  background: #ee9999;
+  background: #aaa;
   height: 50%;
 }
 
+
+/* ToDO list divisions */
+.to-do-list {
+  background-color: #aaa;
+  border-top: 1px solid #555;
+  box-sizing: border-box;
+  height: 90%;
+  overflow: scroll;
+  padding: 10px;
+}
+
+.item-check {
+  background: #dd5555;
+  border: 1px solid #555;
+  box-sizing: border-box;
+  display: block;
+  height: 12px;
+  margin: 11px 0;
+  width: 12px;
+}
+
+.item-check.todo {
+  background: #dd5555;
+}
+
+.item-check.doing {
+  background: #5555dd;
+}
+
+.item-check.done {
+  background: #55dd55;
+}
+
+.item-label {
+  background: #999;
+  border: none;
+  border-bottom: 1px solid #555;
+  box-sizing: border-box;
+  display: block;
+  height: 20px;
+  margin: 7px 5%;
+  width: calc(100% - 10% - 30px);
+}
+
+.item-label:focus {
+  background: #999;
+  border: none;
+  box-sizing: border-box;
+}
 
 /* Buttons appearance */
 .button {
@@ -42,6 +99,19 @@
 }
 
 .button:hover {
-  background: #ee6666;
+  background: #999;
   border: 1px solid #333;
+  box-sizing: border-box;
+}
+
+.list-button {
+  background: #ccc;
+  border: 0.5px solid #555;
+  box-sizing: border-box;
+  margin: 8px 0;
+  width: 18px;
+}
+
+.list-button:hover {
+  background: #bbb;
 }

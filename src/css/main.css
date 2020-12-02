@@ -69,6 +69,10 @@ a {
   float: right;
 }
 
+.float-left::after,.float-right::after {
+  clear: both;
+}
+
 
 /* Text Alignment */
 .t-center {
@@ -130,7 +134,7 @@ a {
 }
 
 .extra-jumbo {
-  font-size: 250px !important;
+  font-size: 100px !important;
 }
 
 
