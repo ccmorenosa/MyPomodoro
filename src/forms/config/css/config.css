@@ -16,6 +16,8 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+
+/* General appearance of the form */
 .config-form {
   background: #dd5555;
   height: 100%;
@@ -23,6 +25,8 @@
   padding: 0;
 }
 
+
+/* Form labels */
 .form-label {
   box-sizing: border-box;
   font-size: x-large;
@@ -32,11 +36,13 @@
   width: 100%;
 }
 
+
+/* Form inputs */
 .form-input {
   box-sizing: border-box;
   height: 8%;
-  margin-top: 1%;
   margin-bottom: 1%;
+  margin-top: 1%;
   width: 100%;
 }
 
@@ -50,6 +56,8 @@
   text-align: center;
 }
 
+
+/* Form submit button */
 .submit-button {
   background: #ee8888;
   border: 2px solid #555;

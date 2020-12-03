@@ -24,7 +24,6 @@ var form = document.getElementById("config-form");
 * This function submit the form to create a new subject in the database.
 */
 function configPomodoro() {
-  console.log("a");
   var data = [
     form.children["Pomodoro"].children[0].value,
     form.children["sBreak"].children[0].value,
@@ -40,6 +39,7 @@ function configPomodoro() {
   ipcRenderer.send("CONFIG-DONE", data);
 }
 
+// This event fill the form with the actual configuration fo the program.
 ipcRenderer.on("DEFAULT", (event, value) => {
   form.children["Pomodoro"].children[0].value = value[0];
   form.children["sBreak"].children[0].value = value[1];

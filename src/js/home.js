@@ -16,101 +16,6 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-const {ipcRenderer, shell} = require("electron");
-const fs = require("fs-extra");
-
-// The title division.
-var titleDiv = document.getElementById("Title");
-
-// The timer division.
-var timerDiv = document.getElementById("Timer");
-var timer;
-
-// The buttons.
-var buttonsDiv = document.getElementById("Buttons");
-var startButton = document.getElementById("Start");
-var resetButton = document.getElementById("Reset");
-var configButton = document.getElementById("Config");
-
-// Is running flag.
-var isRunning = false;
-
-/**
-* This function update the colours of the application.
-*
-* @param {array} colours The value of the colours.
-*/
-function updatePomodoroColours(colours) {
-  titleDiv.parentElement.style.background = colours[0];
-  timerDiv.parentElement.style.background = colours[0];
-  buttonsDiv.style.background = colours[1];
-}
-
-/**
-* This function update the timer.
-*
-* @param {int} time The value for the timer in milliseconds.
-*/
-function updatePomodoroTimer(time) {
-  // Convert the time integer into minutes and seconds.
-  var minutes;
-  if (time < 60 * 60 * 1000) {
-    minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-  } else {
-    minutes = 60;
-  }
-
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-
-  var seconds = Math.floor((time % (1000 * 60)) / 1000);
-
-  if (seconds < 10) {
-    seconds = "0" + seconds;
-  }
-
-  // Set the new timer value;
-  timerDiv.innerText = minutes + ":" + seconds;
-}
-
-/**
-* This function reset the timer.
-*
-* @param {str} file The configuration file.
-*/
-function resetPomodoroTimer(file) {
-  isRunning = false;
-
-  // Read the configuration file.
-  fs.readJson(file, (err, configObj) => {
-    if (err) {
-      throw err;
-    }
-
-    // Reset title.
-    titleDiv.innerText = "Pomodoro";
-
-    // Reset colours.
-    updatePomodoroColours(["#dd5555", "#ee9999"]);
-
-    // Reset timer.
-    updatePomodoroTimer(configObj.work * 60 * 1000);
-  });
-}
-
-// Add events for the buttons
-// Get all delete buttons of the table.
-var buttons = document.getElementsByClassName("button");
-
-// Add an event to the delete buttons.
-for (var button of buttons) {
-  button.addEventListener("click", (event) => {
-    var parNode = event.target.id;
-    ipcRenderer.send(parNode);
-  });
-}
-
 // This event start the timer.
 ipcRenderer.on("START", (event, value) => {
   if (!isRunning) {
@@ -122,14 +27,14 @@ ipcRenderer.on("START", (event, value) => {
         throw err;
       }
 
-      // Set the pomodoro-rest array
+      // Set the pomodoro-rest array.
       var aux = [configObj.work, configObj.sBreak];
-      var auxColour = [["#dd5555", "#ee9999"], ["#5555dd", "#9999ee"]];
+      var auxColour = ["#dd5555", "#5555dd"];
       var auxTitle = ["Pomodoro", "Short Break"];
 
-      var secuence = aux;
-      var secuenceColour = auxColour;
-      var secuenceTitle = auxTitle;
+      secuence = aux;
+      secuenceColour = auxColour;
+      secuenceTitle = auxTitle;
 
       for (var i = 0; i < configObj.pomodoros - 1; i++) {
         secuence = secuence.concat(aux);
@@ -137,12 +42,13 @@ ipcRenderer.on("START", (event, value) => {
         secuenceTitle = secuenceTitle.concat(auxTitle);
       }
 
+      // Remove the last short rest to add the long rest.
       secuence.pop(secuence.length - 1);
       secuenceColour.pop(secuenceColour.length - 1);
       secuenceTitle.pop(secuenceTitle.length - 1);
 
       secuence = secuence.concat(configObj.lBreak);
-      secuenceColour = secuenceColour.concat([["#55dd55", "#99ee99"]]);
+      secuenceColour = secuenceColour.concat(["#55dd55"]);
       secuenceTitle = secuenceTitle.concat("Long Break");
 
       aux = secuence;
@@ -155,40 +61,28 @@ ipcRenderer.on("START", (event, value) => {
         secuenceTitle = secuenceTitle.concat(auxTitle);
       }
 
-      console.log(secuenceColour);
+      // Set round to 0, it means that is the first cycle
+      round = 0;
 
-      var round = 0;
-
-      var time = secuence[round] * 60 * 1000;
+      // Set time to the initial value
+      time = secuence[round] * 60 * 1000;
 
       updatePomodoroTimer(time);
 
-      timer = setInterval(() => {
-        time -= 1000;
-        updatePomodoroTimer(time);
-
-        if (time <= 0) {
-          round += 1;
-
-          if (round < secuence.length) {
-
-            time = secuence[round] * 60 * 1000;
-
-            titleDiv.innerText = secuenceTitle[round];
-
-            updatePomodoroColours(secuenceColour[round]);
-            updatePomodoroTimer(time);
-
-            shell.beep();
-          } else {
-            ipcRenderer.send("RESET");
-          }
-
-        }
-      }, 1000);
-
+      // Start the timer.
+      startTimer();
     });
+  } else if (isPaused) {
+    // Start the timer.
+    isPaused = false;
+    startTimer();
   }
+});
+
+// This event pause the timer.
+ipcRenderer.on("PAUSE", (event, value) => {
+  clearInterval(timer);
+  isPaused = true;
 });
 
 // This event reset the timer.
@@ -197,5 +91,26 @@ ipcRenderer.on("RESET", (event, value) => {
   resetPomodoroTimer(value);
 });
 
-// Reset the timer when the window is ready.
-ipcRenderer.send("RESET");
+// This event add an item to the ToDo list.
+ipcRenderer.on("ADD-ITEM", (event, value) => {
+  item = "<div class=\"full-width check-row\">" +
+  "<div class=\"item-check pointer float-left todo\"></div>\n" +
+  "<input type=\"text\" class=\"item-label float-left\"/>\n" +
+  "<img src=\"assets/removeButton.svg\"" +
+  " class=\"button list-button float-left remove-item\"/>" +
+  "</div>";
+
+  todoList.innerHTML += item;
+
+  // Update id numeration.
+  updateCheckItems();
+  // Add items events.
+  addCheckItemEvents();
+  // Update task labels.
+  updateTodoList(value);
+});
+
+// This event initialize the ToDo list.
+ipcRenderer.on("INIT-TODO-LIST", (event, value) => {
+  initTodoList(value, todoList);
+});

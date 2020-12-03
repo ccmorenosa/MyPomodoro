@@ -32,30 +32,65 @@
 
 <body>
 
-  <div class="full-width jumbo t-middle title display-container">
-    <div id="Title" class="display-middle"></div>
-  </div>
+  <!-- Timer zone -->
+  <div class="half-width half-div float-left">
 
-  <div class="full-width extra-jumbo t-middle timer display-container">
-    <div id="Timer" class="display-middle"></div>
-  </div>
-
-  <div id="Buttons" class="full-width xxlarge t-center t-middle buttons">
-
-    <div id="START" class="third-width float-left pointer display-container button">
-      <div class="display-middle">Start</div>
+    <!-- Title of the cycle -->
+    <div class="full-width xxxlarge t-center title display-container">
+      <div id="Title" class="display-middle"></div>
     </div>
 
-    <div id="RESET" class="third-width float-left pointer display-container button">
-      <div class="display-middle">Reset</div>
+    <!-- Timer -->
+    <div class="full-width extra-jumbo t-center timer display-container">
+      <div id="Timer" class="display-middle"></div>
     </div>
 
-    <div id="CONFIG" class="third-width float-left pointer display-container button">
-      <div class="display-middle">Settings</div>
+    <!-- Buttons menu -->
+    <div id="Buttons" class="full-width xxlarge t-center t-middle buttons">
+
+      <div id="START" class="third-width float-left pointer display-container button">
+        <div class="display-middle">Start</div>
+      </div>
+
+      <div id="PAUSE" class="third-width float-left pointer display-container button">
+        <div class="display-middle">Pause</div>
+      </div>
+
+      <div id="RESET" class="third-width float-left pointer display-container button">
+        <div class="display-middle">Reset</div>
+      </div>
+
+      <div id="CONFIG" class="full-width float-left pointer display-container button">
+        <div class="display-middle">Settings</div>
+      </div>
+
     </div>
 
   </div>
 
+  <!-- ToDo list -->
+  <div class="half-width half-div float-left">
+
+    <!-- Title of the ToDo list -->
+    <div id="TODO-TITLE" class="full-width xxxlarge t-center title display-container">
+      <div class="full-width display-middle">To Do List</div>
+    </div>
+
+    <!-- ToDo list -->
+    <div id="TODO-LIST" class="full-width large t-left to-do-list">
+
+      <div id="CHECK-LIST" style=""></div>
+
+      <div class="full-width display-container t-center" style="display:inline-block;">
+        <img id="ADD-ITEM" src="assets/addButton.svg"
+        class="pointer button list-button">
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="js/functions.js"></script>
   <script src="js/home.js"></script>
 </body>
 
