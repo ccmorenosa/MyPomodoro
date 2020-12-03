@@ -33,6 +33,9 @@ var dataDir;
 // Declare the variable for the configuration file.
 var configFile;
 
+// Declare the variable for the ToDo list file.
+var todoFile;
+
 /**
 * This function creates the main window.
 
@@ -76,6 +79,7 @@ function createWindow () {
   // Get the data directory to save the configuration.
   dataDir = app.getPath("userData");
   configFile = path.join(dataDir, "config.json");
+  todoFile = path.join(dataDir, "todo.json");
 
   // Create the directory if it does not exists.
   fs.pathExistsSync(dataDir, (err, exists) => {
@@ -107,15 +111,56 @@ function createWindow () {
         "repetitions": 3
       };
 
-      fs.writeJsonSync(configFile, config, (wErr) => {
+      fs.writeJsonSync(configFile,
+        config,
+        {
+          "spaces": "\t",
+          "EOL": "\n"
+        },
+        (wErr) => {
+
         if (wErr) {
           throw wErr;
         }
+
       });
     }
 
+  });
+
+  // Crete the ToDo list file if it does not exists.
+  fs.pathExists(todoFile, (err, exists) => {
+    if (err) {
+      throw err;
+    }
+
+    if (!exists) {
+      var todo = { };
+
+      fs.writeJsonSync(todoFile,
+        todo,
+        {
+          "spaces": "\t",
+          "EOL": "\n"
+        },
+        (wErr) => {
+        if (wErr) {
+          throw wErr;
+        }
+
+      });
+    }
+
+  });
+
+  mainWin.once("ready-to-show", () => {
+    mainWin.show();
+
+    // Reset the timer.
     mainWin.send("RESET", configFile);
 
+    // Initilize the ToDo list.
+    mainWin.send("INIT-TODO-LIST", todoFile);
   });
 
   // Open the DevTools.
@@ -228,7 +273,14 @@ ipcMain.on("CONFIG-DONE", (event, value) => {
     "repetitions": value[4]
   };
 
-  fs.writeJsonSync(configFile, config, (wErr) => {
+  fs.writeJsonSync(
+    configFile,
+    config,
+    {
+      "spaces": "\t",
+      "EOL": "\n"
+    },
+    (wErr) => {
     if (wErr) {
       throw wErr;
     }
@@ -239,5 +291,22 @@ ipcMain.on("CONFIG-DONE", (event, value) => {
 
 // This event add an item to the ToDo list.
 ipcMain.on("ADD-ITEM", (event, value) => {
-  mainWin.send("ADD-ITEM");
+  mainWin.send("ADD-ITEM", todoFile);
+});
+
+// This event add an item to the ToDo list in the file.
+ipcMain.on("UPDATE-TODO-LIST", (event, value) => {
+  fs.writeJsonSync(
+    todoFile,
+    value,
+    {
+      "spaces": "\t",
+      "EOL": "\n"
+    },
+    (err) => {
+    if (err) {
+      throw err;
+    }
+  });
+
 });

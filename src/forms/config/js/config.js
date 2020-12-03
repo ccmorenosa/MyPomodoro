@@ -24,7 +24,6 @@ var form = document.getElementById("config-form");
 * This function submit the form to create a new subject in the database.
 */
 function configPomodoro() {
-  console.log("a");
   var data = [
     form.children["Pomodoro"].children[0].value,
     form.children["sBreak"].children[0].value,
