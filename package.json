@@ -30,7 +30,7 @@
       "target": [
         "AppImage",
         "deb",
-        "rpm"
+        "rpm", "pacman"
       ],
       "category": "Productivity",
       "icon": "src/assets/icon.png",
