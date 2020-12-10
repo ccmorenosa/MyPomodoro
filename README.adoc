@@ -29,11 +29,11 @@ https://github.com/afmorenosa/MyPomodoro/releases/download/1.1.0/mypomodoro-1.1.
 
 == Colors code in the ToDo list
 
-[red]#icon:square[]# ToDo
+image:src/assets/todo.svg[width=16] ToDo.
 
-[blue]#icon:square[]# Doing
+image:src/assets/doing.svg[width=16] Doing.
 
-[green]#icon:square[]# Done
+image:src/assets/done.svg[width=16] Done.
 
 == Screenshots
 
