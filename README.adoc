@@ -10,22 +10,21 @@ system.
 
 === Windows
 
-https://github.com/afmorenosa/MyPomodoro/releases/download/1.0.0/mypomodoro.Setup.1.0.0.exe
-
+https://github.com/afmorenosa/MyPomodoro/releases/download/1.1.0/mypomodoro.Setup.1.1.0.exe
 
 === Linux
 
 ==== .deb file
 
-https://github.com/afmorenosa/MyPomodoro/releases/download/1.0.0/mypomodoro_1.0.0_amd64.deb
+https://github.com/afmorenosa/MyPomodoro/releases/download/1.1.0/mypomodoro_1.1.0_amd64.deb
 
 ==== .mpn
 
-https://github.com/afmorenosa/MyPomodoro/releases/download/1.0.0/mypomodoro-1.0.0.x86_64.rpm
+https://github.com/afmorenosa/MyPomodoro/releases/download/1.1.0/mypomodoro-1.1.0.x86_64.rpm
 
 ==== Arch
 
-https://github.com/afmorenosa/MyPomodoro/releases/download/1.0.0/mypomodoro-1.0.0.pacman
+https://github.com/afmorenosa/MyPomodoro/releases/download/1.1.0/mypomodoro-1.1.0.pacman
 
 
 == Colors code in the ToDo list
