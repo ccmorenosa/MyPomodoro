@@ -17,14 +17,28 @@ https://github.com/afmorenosa/MyPomodoro/releases/download/1.0.0/mypomodoro.Setu
 
 === Linux
 
-==== Debian
+==== .deb file
 
 https://github.com/afmorenosa/MyPomodoro/releases/download/1.0.0/mypomodoro_1.0.0_amd64.deb
 
-==== RedHat
+==== .mpn
 
 https://github.com/afmorenosa/MyPomodoro/releases/download/1.0.0/mypomodoro-1.0.0.x86_64.rpm
 
 ==== Arch
 
 https://github.com/afmorenosa/MyPomodoro/releases/download/1.0.0/mypomodoro-1.0.0.pacman
+
+== Colors code in the ToDo list
+
+[red]#icon:square[]# ToDo
+
+[blue]#icon:square[]# Doing
+
+[green]#icon:square[]# Done
+
+== Screenshots
+
+image::src/screenshots/main_window.png[]
+
+image::src/screenshots/settings.png[]
