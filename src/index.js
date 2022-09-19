@@ -1,6 +1,6 @@
 /*
 ** MyPomodoro.  A simple pomodoro countdown timer.
-** Copyright (C) 2020  Andŕes Felipe Moreno Sarria
+** Copyright (C) 2020  Cindy Catalina Moreno Sarria
 **
 ** This program is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -155,12 +155,6 @@ function createWindow () {
 
   mainWin.once("ready-to-show", () => {
     mainWin.show();
-
-    // Reset the timer.
-    mainWin.send("RESET", configFile);
-
-    // Initilize the ToDo list.
-    mainWin.send("INIT-TODO-LIST", todoFile);
   });
 
   // Open the DevTools.
@@ -287,6 +281,11 @@ ipcMain.on("CONFIG-DONE", (event, value) => {
   });
 
   mainWin.send("RESET", configFile);
+});
+
+// This event staqrt the ToDo list.
+ipcMain.on("INIT-TODO-LIST", (event, value) => {
+  mainWin.send("INIT-TODO-LIST", todoFile);
 });
 
 // This event add an item to the ToDo list.

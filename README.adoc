@@ -22,7 +22,7 @@ https://github.com/afmorenosa/MyPomodoro/releases/download/1.1.0/mypomodoro_1.1.
 
 https://github.com/afmorenosa/MyPomodoro/releases/download/1.1.0/mypomodoro-1.1.0.x86_64.rpm
 
-==== Arch
+==== .mpn
 
 https://github.com/afmorenosa/MyPomodoro/releases/download/1.1.0/mypomodoro-1.1.0.pacman
 
