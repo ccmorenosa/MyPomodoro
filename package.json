@@ -34,7 +34,7 @@
       ],
       "category": "Productivity",
       "icon": "src/assets/icon.png",
-      "maintainer": "afmorenosa"
+      "maintainer": "ccmorenosa"
     },
     "win": {
       "target": [
@@ -54,20 +54,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/afmorenosa/MyPomodoro.git"
+    "url": "git+https://github.com/ccmorenosa/MyPomodoro.git"
   },
   "keywords": [
     "Pomodoro",
     "Timer",
     "Countdown"
   ],
-  "author": "Andŕes Felipe Moreno Sarria <afmorenosa@unal.edu.co>",
-  "email": "afmorenosa@unal.edu.co",
+  "author": "Cindy Catalina Moreno Sarria <ccatamorenos@gmail.com>",
+  "email": "ccatamorenos@gmail.com",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/afmorenosa/MyPomodoro/issues"
+    "url": "https://github.com/ccmorenosa/MyPomodoro/issues"
   },
-  "homepage": "https://github.com/afmorenosa/MyPomodoro#readme",
+  "homepage": "https://github.com/ccmorenosa/MyPomodoro#readme",
   "devDependencies": {
     "electron": "^11.0.3",
     "electron-builder": "^22.9.1",
